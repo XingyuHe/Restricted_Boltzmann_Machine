@@ -11,6 +11,7 @@ print(np.shape(train_data))
 rbm = RBM(num_visible=np.prod(np.shape(train_data)[1:]), num_hidden=10,
           train_data=train_data, epochs=20,
           learning_rate=0.00001)
+
 # rbm.train()
 
 result = np.load("./model/result.npy", allow_pickle=True)
