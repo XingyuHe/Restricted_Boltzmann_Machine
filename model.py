@@ -180,7 +180,7 @@ class RBM:
         np.save("./model/result{}".format(start_time), result)
         return result
 
-    def gibbs_sampler(self, steps, val, hidden_bias, visible_bias, weights):
+    def gibbs_sampler(self, steps, val, hidden_bias, visible_bias, weights, save_file=False, img_path=None):
         '''
         :param steps: The number of samples generated
         :param val: The initial sample
@@ -199,11 +199,13 @@ class RBM:
                 visible_p = self.get_conditional_probabilities(layer="visible", weights=weights, val=hidden_sample,
                                                                bias=visible_bias)
                 val = visible_p
-                if i % 100 == 0:
-                    pic_dir = os.path.join("./pictures/{}/".format(start_time))
-                    if not os.path.exists(pic_dir):
-                        os.mkdir(pic_dir)
-                    img_path = os.path.join(pic_dir, "{}.png".format(time.time()))
+                if save_file == True:
+                    if img_path == None:
+                        pic_dir = os.path.join("./pictures/{}/".format(start_time))
+                        if not os.path.exists(pic_dir):
+                            os.mkdir(pic_dir)
+                        img_path = os.path.join(pic_dir, "{}.png".format(time.time()))
+
                     plt.imsave(img_path, np.reshape(val.eval(session=self.sess), [28, 28]), cmap=plt.cm.gray)
         return val
 
