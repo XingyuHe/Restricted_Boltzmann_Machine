@@ -8,6 +8,7 @@ mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
 rbm = RBM(num_visible=784, num_hidden=10,
           train_data=mnist.train.images, epochs=20,
           learning_rate=0.00001)
+
 # rbm.train()
 
 result = np.load("./model/result.npy", allow_pickle=True)

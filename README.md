@@ -5,7 +5,7 @@ This project builds a RMB.
 ### Install required packages 
 tensorflow, numpy, time, os, matplotlib
 ```
-pip install -r requirements.txt
+sh requirements.sh
 ```
 
 
