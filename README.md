@@ -25,4 +25,17 @@ Train the Restricted Boltzmann Machine with the training data
 ```
 rbm.train()
 ```
+### Results 
+Number|GIF  
+-----------:|:----------------------------:
+0|![alt text](./pictures/0.gif)
+1|![alt text](./pictures/1.gif)
+2|![alt text](./pictures/2.gif)
+3|![alt text](./pictures/3.gif)
+4|![alt text](./pictures/4.gif)
+5|![alt text](./pictures/5.gif)
+6|![alt text](./pictures/6.gif)
+7|![alt text](./pictures/7.gif)
+8|![alt text](./pictures/8.gif)
+9|![alt text](./pictures/9.gif)
 
