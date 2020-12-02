@@ -43,21 +43,30 @@ def create_gif_state_value_function(sourceFileNames, targetFileName):
         images.append(imageio.imread(filename))
     imageio.mimsave('{}.gif'.format(targetFileName), images)
 
-mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
-train_data = mnist.train.images
-train_label = mnist.train.labels
-print(np.shape(train_data))
-rbm = RBM(num_visible=np.prod(np.shape(train_data)[1:]), num_hidden=10,
-          train_data=train_data, epochs=20,
-          learning_rate=0.00001)
-# rbm.train()
+filenames = os.listdir("./pictures/hidden_layer_values_[728, 10]")
 
-result = np.load("./model/result.npy", allow_pickle=True)
+for j in range(len(filenames)):
+    filenames[j] = "./pictures/hidden_layer_values_[728, 10]/{}".format(filenames[j])
+    #         imgs[j] = "./pictures/{}/{}".format(i, imgs[j])
+filenames.sort(key=os.path.getctime)
 
-for i in range(10):
-    imgs = os.listdir("./pictures/{}/".format(i))
-    for j in range(len(imgs)):
-        imgs[j] = "./pictures/{}/{}".format(i, imgs[j])
-    print(imgs)
-    create_gif_state_value_function(list(imgs), "./pictures/{}".format(i))
-
+create_gif_state_value_function(filenames, "./pictures/hidden_layer_value.gif")
+# mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
+# train_data = mnist.train.images
+# train_label = mnist.train.labels
+# print(np.shape(train_data))
+# rbm = RBM(num_visible=np.prod(np.shape(train_data)[1:]), num_hidden=10,
+#           train_data=train_data, epochs=20,
+#           learning_rate=0.00001)
+# # rbm.train()
+#
+# result = np.load("./model/result.npy", allow_pickle=True)
+#
+# for i in range(10):
+#     imgs = os.listdir("./pictures/{}/".format(i))
+#     for j in range(len(imgs)):
+#         imgs[j] = "./pictures/{}/{}".format(i, imgs[j])
+#     print(imgs)
+#     create_gif_state_value_function(list(imgs), "./pictures/{}".format(i))
+#
+#

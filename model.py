@@ -180,7 +180,7 @@ class RBM:
         np.save("./model/result{}".format(start_time), result)
         return result
 
-    def gibbs_sampler(self, steps, val, hidden_bias, visible_bias, weights, save_file=False, img_path=None):
+    def gibbs_sampler(self, steps, val, hidden_bias, visible_bias, weights, save_file=False, img_path=None, return_visible=True):
         '''
         :param steps: The number of samples generated
         :param val: The initial sample
@@ -190,11 +190,13 @@ class RBM:
         :return: The final sample
         '''
         start_time = time.time()
+        hidden_p_val = None
         with tf.name_scope("Gibbs_sampling"):
             for i in range(steps):
                 hidden_p = self.get_conditional_probabilities(layer="hidden", weights=weights, val=val,
                                                               bias=hidden_bias)
 
+                hidden_p_val = hidden_p
                 hidden_sample = self.sample(hidden_p)
                 visible_p = self.get_conditional_probabilities(layer="visible", weights=weights, val=hidden_sample,
                                                                bias=visible_bias)
@@ -207,7 +209,11 @@ class RBM:
                         img_path = os.path.join(pic_dir, "{}.png".format(time.time()))
 
                     plt.imsave(img_path, np.reshape(val.eval(session=self.sess), [28, 28]), cmap=plt.cm.gray)
-        return val
+
+        if return_visible:
+            return val
+        else:
+            return hidden_p_val
 
 
 
