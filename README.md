@@ -39,3 +39,14 @@ Number|GIF
 8|![alt text](./pictures/8.gif)
 9|![alt text](./pictures/9.gif)
 
+We can also think of the hidden units as the 
+features extracted from the hidden layer units.
+The following GIF demonstrates that the values 
+of the hidden units (each row in the picture) 
+for each number (0-9) tend to converge values 
+that are unique from the values of other hidden 
+units (other rows in the picture). The patterns
+in each row are different enough such that if 
+provided with labels on the images, a logistic
+classifier can differentiate between each digit.
+![alt text](./pictures/hidden_layer_value.gif)
