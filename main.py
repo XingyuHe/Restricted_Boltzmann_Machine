@@ -50,7 +50,7 @@ all_hidden_visit = {}
 test_data = mnist.test.images
 test_label = mnist.test.labels
 all_numbers = set(list(range(0, 10)))
-result = np.load("./model/result-[728, 10]-500.npy", allow_pickle=True)
+result = np.load("./model/result-[728, 100].npy", allow_pickle=True)
 weights, visible_bias, hidden_bias = result[0, 0], result[0, 1], result[0, 2]
 
 # for i in range(np.shape(test_label)[0]):
@@ -115,12 +115,14 @@ visible_sample = visible_sample.eval(session=sess)
 visible_sample = np.reshape(visible_sample, [28, 28])
 
 plt.imshow(visible_sample, cmap=plt.cm.gray)
-plt.imshow(np.reshape(orig_img, [28, 28]))
+plt.imshow(np.reshape(orig_img, [28, 28]), cmap=plt.cm.gray)
 
 # return tf.floor(probabilities + tf.random_uniform(tf.shape(probabilities),
 #                                                   0, 1))
-sample = np.floor(visible_sample + np.random.uniform(0, 1, np.shape(visible_sample)))
-plt.imshow(sample, cmap=plt.cm.gray)
+os.mkdir("./pictures/7_sample")
+for i in range(40):
+    sample = np.floor(visible_sample + np.random.uniform(0, 1, np.shape(visible_sample)))
+    plt.imsave("./pictures/7_sample/{}.png".format(i), sample, cmap=plt.cm.gray, dpi=100000)
 
 
 

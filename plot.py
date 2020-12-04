@@ -40,17 +40,18 @@ def compile_images():
 def create_gif_state_value_function(sourceFileNames, targetFileName):
     images = []
     for filename in sourceFileNames:
-        images.append(imageio.imread(filename))
+        images.append(imageio.imread(filename, quality=10))
     imageio.mimsave('{}.gif'.format(targetFileName), images)
 
-filenames = os.listdir("./pictures/hidden_layer_values_[728, 10]")
+dir = "./pictures/7_sample"
+filenames = os.listdir(dir)
 
 for j in range(len(filenames)):
-    filenames[j] = "./pictures/hidden_layer_values_[728, 10]/{}".format(filenames[j])
+    filenames[j] = "{}/{}".format(dir, filenames[j])
     #         imgs[j] = "./pictures/{}/{}".format(i, imgs[j])
 filenames.sort(key=os.path.getctime)
 
-create_gif_state_value_function(filenames, "./pictures/hidden_layer_value.gif")
+create_gif_state_value_function(filenames, "./pictures/7_sample.gif")
 # mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
 # train_data = mnist.train.images
 # train_label = mnist.train.labels
