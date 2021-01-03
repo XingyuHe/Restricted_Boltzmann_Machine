@@ -1,5 +1,5 @@
 # Restricted Boltzmann Machine
-This project builds a RMB. 
+This project builds a RMB. For reference to the underlying mathematics, see https://github.com/XingyuHe/Restricted_Boltzmann_Machine/blob/master/summary.pdf
 
 ## How to use the model
 ### Install required packages 
